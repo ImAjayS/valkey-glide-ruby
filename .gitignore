@@ -19,6 +19,10 @@ valkey-glide/ffi/target/
 # These are generated during build, not committed
 lib/valkey/libglide_ffi.so
 lib/valkey/libglide_ffi.dylib
+# Local/dev builds stay ignored, EXCEPT the amd64 prod artifact, which is
+# committed so the git-sourced gem works in production (gem has no build-on-install).
+lib/valkey/native/*
+!lib/valkey/native/x86_64-unknown-linux-gnu/
 
 # Used by dotenv library to load environment variables.
 # .env
