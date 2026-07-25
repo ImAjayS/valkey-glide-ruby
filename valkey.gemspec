@@ -29,5 +29,11 @@ Gem::Specification.new do |spec|
   end + Dir.glob("lib/valkey/native/**/*").reject { |f| File.directory?(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "ffi", "~> 1.17.0"
+  # ffi 1.17+ dropped Ruby 2.7; 1.16.x supports both 2.7 and 3.x. Keep newer
+  # rubies on the original constraint so their resolution is unaffected.
+  if RUBY_VERSION < "3.0"
+    spec.add_dependency "ffi", ">= 1.16", "< 1.17"
+  else
+    spec.add_dependency "ffi", "~> 1.17.0"
+  end
 end
